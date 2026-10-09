@@ -212,7 +212,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
 @app.get("/profile")
 def get_profile(background_tasks: BackgroundTasks, user = Depends(get_current_user)):
 
-    background_tasks.add_task(add_profile_activity, user["id"])
+    background_tasks.add_task(add_profile_activity, user["sub"])
     return {
         "message": "Welcome to profile",
         "user": user
